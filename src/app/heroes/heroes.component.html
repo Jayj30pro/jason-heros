@@ -1,0 +1,13 @@
+<h2>My Lineup</h2>
+<ul class="defenders">
+    <li *ngFor="let saiyan of jheroes">
+        <button [class.selected]="saiyan === selectedHero" type="button" (click)="onSelect(saiyan)">
+            <span class="emblem">{{saiyan.id}}</span>
+            <span class="name">{{saiyan.name}}</span>
+        </button>
+    </li>
+</ul>
+
+<app-saiyan-detail [saiyan]="selectedHero"></app-saiyan-detail>
+
+
