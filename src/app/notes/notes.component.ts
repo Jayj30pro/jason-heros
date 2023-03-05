@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NotesService } from '../notes.service';
 
 @Component({
   selector: 'app-notes',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent {
+  constructor(public notesService: NotesService) {}
 
 }

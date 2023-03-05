@@ -1,21 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { FightersService } from '../fighters.service';
+import { NotesService } from '../notes.service';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent {
-  jheroes: Hero[] = [];
-  constructor(private fighterService: FightersService) {}
+export class HeroesComponent implements OnInit {
   selectedHero?: Hero;
+  jheroes: Hero[] = [];
 
-  getFighters(): void {
-    this.fighterService.getFighters()
-      .subscribe(jheroes => this.jheroes = jheroes);
-  }
+  constructor(private fighterService: FightersService, private notesService: NotesService) {}
 
   ngOnInit(): void {
     this.getFighters();
@@ -23,6 +20,13 @@ export class HeroesComponent {
 
   onSelect(sayian: Hero): void {
     this.selectedHero = sayian;
+    this.notesService.add(`FightersComponent: Selected sayian id=${sayian.id}`);
   }
+
+  getFighters(): void {
+    this.fighterService.getFighters()
+      .subscribe(jheroes => this.jheroes = jheroes);
+  }
+
 }
 
