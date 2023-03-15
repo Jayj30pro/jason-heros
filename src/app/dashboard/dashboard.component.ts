@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { FightersService } from '../fighters.service';
-import { NotesService } from '../notes.service';
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class HeroesComponent implements OnInit {
-  
+export class DashboardComponent implements OnInit {
   jheroes: Hero[] = [];
 
   constructor(private fighterService: FightersService) {}
@@ -20,10 +18,6 @@ export class HeroesComponent implements OnInit {
 
   getFighters(): void {
     this.fighterService.getFighters()
-      .subscribe(jheroes => this.jheroes = jheroes);
+    .subscribe(jheroes => this.jheroes = jheroes.slice(1, 5)); 
   }
-
 }
-
-// back to vs
-// section 5 routable hero Detail component

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { SaiyanDetailComponent } from './saiyan-detail/saiyan-detail.component';
 import { NotesComponent } from './notes/notes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { NotesComponent } from './notes/notes.component';
     AppComponent,
     HeroesComponent,
     SaiyanDetailComponent,
-    NotesComponent
+    NotesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
