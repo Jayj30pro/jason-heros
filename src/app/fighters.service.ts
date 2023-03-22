@@ -16,4 +16,11 @@ export class FightersService {
     this.notesService.add('FighterService: fetched fighters')
     return fighter;
   }
+
+  getSaiyan(id: number): Observable<Hero> {
+    //error handler will go here
+    const saiyan = CHAMPS.find(h => h.id === id)!;
+    this.notesService.add(`FighterService: fteched hero id=${id}`);
+    return of(saiyan);
+  }
 }

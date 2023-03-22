@@ -25,5 +25,4 @@ export class HeroesComponent implements OnInit {
 
 }
 
-// back to vs
-// section 5 routable hero Detail component
+
