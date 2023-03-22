@@ -2,7 +2,7 @@
 <ul class="defenders">
     <li *ngFor="let saiyan of jheroes">
         <a routerLink="/detail/{{saiyan.id}}">
-            <span class="emblem">{{saiyan.id}}</span>
+            <span class="emblem">{{saiyan.id}}</span> {{saiyan.name}}
         </a>
     </li>
 </ul>

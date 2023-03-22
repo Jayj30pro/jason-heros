@@ -13,7 +13,13 @@ export class FightersService {
 
   getFighters(): Observable<Hero[]> {
     const fighter = of(CHAMPS);
-    this.notesService.add('FighterService: fetched fighters')
+    this.notesService.add('FighterService: fetched all fighters')
+    return fighter;
+  }
+
+  getTopFighters(){
+    const fighter = of(CHAMPS);
+    this.notesService.add('FighterService: fetched the top fighters')
     return fighter;
   }
 

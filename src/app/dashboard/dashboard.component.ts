@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getFighters(): void {
-    this.fighterService.getFighters()
+    this.fighterService.getTopFighters()
     .subscribe(jheroes => this.jheroes = jheroes.slice(1, 5)); 
   }
 }

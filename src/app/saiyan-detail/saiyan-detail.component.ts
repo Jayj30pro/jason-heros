@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -9,8 +9,8 @@ import { FightersService } from '../fighters.service';
   templateUrl: './saiyan-detail.component.html',
   styleUrls: ['./saiyan-detail.component.css']
 })
-export class SaiyanDetailComponent {
-  @Input() saiyan?: Hero;
+export class SaiyanDetailComponent implements OnInit{
+  saiyan: Hero | undefined;
 
   constructor (
     private route: ActivatedRoute,
@@ -26,6 +26,10 @@ export class SaiyanDetailComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.fighterService.getSaiyan(id)
       .subscribe(saiyan => this.saiyan = saiyan);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
