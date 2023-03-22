@@ -21,3 +21,5 @@ export class DashboardComponent implements OnInit {
     .subscribe(jheroes => this.jheroes = jheroes.slice(1, 5)); 
   }
 }
+
+// Section 6 Start 
