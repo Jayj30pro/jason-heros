@@ -3,18 +3,22 @@ import { Hero } from './hero';
 import { CHAMPS } from './more-heros';
 import { Observable, of } from 'rxjs';
 import { NotesService } from './notes.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FightersService {
 
-  constructor(private notesService: NotesService) { }
+  constructor(
+    private http: HttpClient,
+    private notesService: NotesService) { }
 
   getFighters(): Observable<Hero[]> {
-    const fighter = of(CHAMPS);
-    this.notesService.add('FighterService: fetched all fighters')
-    return fighter;
+    //const fighter = of(CHAMPS);
+    //this.notesService.add('FighterService: fetched all fighters')
+    //return fighter;
+    return this.http.get<Hero[]>(this.fighterUrl)
   }
 
   getTopFighters(){
@@ -29,4 +33,10 @@ export class FightersService {
     this.notesService.add(`FighterService: fteched hero id=${id}`);
     return of(saiyan);
   }
+
+  private log(note: string) {
+    this.notesService.add(`FighterService: ${note}`);
+  }
+
+  private fighterUrl = 'api/fighters';
 }
