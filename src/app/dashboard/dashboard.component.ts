@@ -22,4 +22,3 @@ export class DashboardComponent implements OnInit {
   }
 }
 
-// Section 6 Start 

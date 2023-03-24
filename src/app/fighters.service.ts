@@ -40,3 +40,5 @@ export class FightersService {
 
   private fighterUrl = 'api/fighters';
 }
+
+// Scetion 6 Error Handling
