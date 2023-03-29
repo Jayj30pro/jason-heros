@@ -4,6 +4,7 @@ import { CHAMPS } from './more-heros';
 import { Observable, of } from 'rxjs';
 import { NotesService } from './notes.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,31 @@ export class FightersService {
     private http: HttpClient,
     private notesService: NotesService) { }
 
+      
+  /** GET heroes from the server */
   getFighters(): Observable<Hero[]> {
-    //const fighter = of(CHAMPS);
-    //this.notesService.add('FighterService: fetched all fighters')
-    //return fighter;
     return this.http.get<Hero[]>(this.fighterUrl)
+      .pipe(
+        tap(_ => this.log('feched fighters')),
+        catchError(this.handleError<Hero[]>('getFighters', []))
+      );
+  }
+
+  /** GET hero by id. Will 404 if id not found */
+  getFighter(id: number): Observable<Hero> {
+    const url = `${this.fighterUrl}/${id}`;
+    return this.http.get<Hero>(url).pipe(
+        tap(_ => this.log(`feched fighter id=${id}`)),
+        catchError(this.handleError<Hero>(`getFighter id=${id}`))
+      );
+  }
+
+  private handleError<T>(operation = 'operation', result?:T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} failed: ${error.note}`);
+      return of(result as T);
+    };
   }
 
   getTopFighters(){
@@ -34,6 +55,17 @@ export class FightersService {
     return of(saiyan);
   }
 
+  updateFighter(saiyan: Hero): Observable<any> {
+    return this.http.put(this.fighterUrl, saiyan, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${saiyan.id}`)),
+      catchError(this.handleError<any>('updateFighter'))
+    );
+  }
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   private log(note: string) {
     this.notesService.add(`FighterService: ${note}`);
   }
@@ -41,4 +73,3 @@ export class FightersService {
   private fighterUrl = 'api/fighters';
 }
 
-// Scetion 6 Error Handling

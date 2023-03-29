@@ -32,4 +32,11 @@ export class SaiyanDetailComponent implements OnInit{
     this.location.back();
   }
 
+  save(): void {
+    if (this.saiyan) {
+      this.fighterService.updateFighter(this.saiyan)
+        .subscribe(() => this.goBack());
+    }
+  }
+
 }

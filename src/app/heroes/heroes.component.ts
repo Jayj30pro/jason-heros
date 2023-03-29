@@ -24,4 +24,4 @@ export class HeroesComponent implements OnInit {
 
 }
 
-
+// Section 6 Add a new hero
