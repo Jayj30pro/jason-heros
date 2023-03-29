@@ -33,4 +33,4 @@ export class HeroesComponent implements OnInit {
 
 }
 
-// Section 6 Delete a new hero
+// Section 6 Delete a hero
