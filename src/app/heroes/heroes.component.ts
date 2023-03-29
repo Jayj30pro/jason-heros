@@ -22,6 +22,15 @@ export class HeroesComponent implements OnInit {
       .subscribe(jheroes => this.jheroes = jheroes);
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.fighterService.addFighter({ name } as Hero)
+      .subscribe(sayian => {
+        this.jheroes.push(sayian);
+      });
+  }
+
 }
 
-// Section 6 Add a new hero
+// Section 6 Delete a new hero

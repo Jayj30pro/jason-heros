@@ -70,6 +70,13 @@ export class FightersService {
     this.notesService.add(`FighterService: ${note}`);
   }
 
+  addFighter(saiyan: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.fighterUrl, saiyan, this.httpOptions).pipe(
+      tap((newFighter: Hero) => this.log(`added fighter w/ id=${newFighter.id}`)),
+      catchError(this.handleError<Hero>('addFighter'))
+    );
+  }
+
   private fighterUrl = 'api/fighters';
 }
 

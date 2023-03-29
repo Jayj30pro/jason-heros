@@ -1,4 +1,11 @@
 <h2>My Lineup</h2>
+<div>
+    <label for="new-fighter"> Fighter name: </label>
+    <input id="new-fighter" #fighterName />
+    <button type="button" class="add-button" (click)="add(fighterName.value); fighterName.value=''">
+        Add Fighter
+    </button>
+</div>
 <ul class="defenders">
     <li *ngFor="let saiyan of jheroes">
         <a routerLink="/detail/{{saiyan.id}}">
