@@ -31,6 +31,11 @@ export class HeroesComponent implements OnInit {
       });
   }
 
+  delete(fighter: Hero): void {
+    this.jheroes = this.jheroes.filter(h => h !== fighter);
+    this.fighterService.deleteFighter(fighter.id).subscribe();
+  }
+
 }
 
-// Section 6 Delete a hero
+// Section 6 Search by Name

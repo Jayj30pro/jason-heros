@@ -11,6 +11,7 @@
         <a routerLink="/detail/{{saiyan.id}}">
             <span class="emblem">{{saiyan.id}}</span> {{saiyan.name}}
         </a>
+        <button type="button" class="delete" title="delete fighter" (click)="delete(saiyan)">x</button>
     </li>
 </ul>
 
