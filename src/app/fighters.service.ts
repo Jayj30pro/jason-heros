@@ -86,6 +86,18 @@ export class FightersService {
     );
   }
 
+  searchFighters(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<Hero[]>(`${this.fighterUrl}/?name=${term}`).pipe(
+      tap(x => x.length ?
+        this.log(`found fighters matching "${term}"`):
+        this.log(`no heroes matching "${term}"`)),
+      catchError(this.handleError<Hero[]>('searchFighters', []))
+    );
+  }
+
   private fighterUrl = 'api/fighters';
 }
 
