@@ -34,3 +34,5 @@ export class FighterSearchComponent implements OnInit {
   }
 
 }
+
+// all but the CSS
