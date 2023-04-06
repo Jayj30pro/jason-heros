@@ -35,5 +35,3 @@ export class FighterSearchComponent implements OnInit {
 
 }
 
-// all but the CSS
-// fix the get top fighter method
